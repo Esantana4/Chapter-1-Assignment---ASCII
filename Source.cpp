@@ -6,7 +6,6 @@
 #include <string>
 #include <fstream>
 #include "input.h"
-#include <vector>
 
 using namespace std;
 
@@ -14,7 +13,7 @@ int mainMenu();
 int option1();
 void option2();
 void option3();
-void convertDecimalNumber(int, int);
+string convertDecimalNumber(int, int);
 
 
 int main()
@@ -230,13 +229,23 @@ void option2()
 
         case 3:{
 
-            int baseArray[] = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36 };
+            int baseArray[]  = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36};
+            
+            // Dividing the total size of an array by a single element gives you the number of elements in an array
+            int numBases = sizeof(baseArray) / sizeof(baseArray[0]);
 
-            for (int i = 0; i < sizeof(baseArray); i++)
+            for (int i = 0; i < numBases; i++)
             {
-                base = i + 1;
+                base = baseArray[i];
                 
-                convertDecimalNumber(decimalNumber, base);
+   // not properly working *****************************************************************
+                string answer = convertDecimalNumber(decimalNumber, base);
+
+                // Convert string to int using stoi to compare values
+                int convertedNumber = stoi(answer);
+                cout << answer << endl;
+                if (baseArray[i] == convertedNumber)
+                    cout << "N\n";
             }
 
         }break;
@@ -257,7 +266,7 @@ void option3()
 
 }
 
-void convertDecimalNumber(int decimalNum, int _base)
+string convertDecimalNumber(int decimalNum, int _base)
 {
     //int base = 0;
 
@@ -277,8 +286,13 @@ void convertDecimalNumber(int decimalNum, int _base)
         // decimalNum keeps track of the quotient between the number being converted and the base dividing into the decimal number.
         // and this while-loop continues while decimalNum > 0
         decimalNum /= _base;
+
+
     }
 
-    // Display the concatinated remaninders/conversion
-    cout << binaryNumber << endl;
+        // Display the concatinated remaninders/conversion
+        return binaryNumber;
+        //if (binaryNumber > "10")
+        //    cout << "\N";
+ 
 }
