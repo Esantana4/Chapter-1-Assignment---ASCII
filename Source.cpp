@@ -8,7 +8,7 @@
 #include "input.h"
 using namespace std;
 
-int mainMenu();
+void mainMenu();
 void option1();
 void option2();
 void option3();
@@ -25,7 +25,7 @@ int main()
 
 // Pre - Conditon
 //Post-Condition
-int mainMenu()
+void mainMenu()
 {
 
     cout << endl;
