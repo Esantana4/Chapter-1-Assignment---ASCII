@@ -5,22 +5,24 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <vector>
 #include "input.h"
 
 using namespace std;
 
 int mainMenu();
-int option1();
+void option1();
 void option2();
 void option3();
 string convertDecimalNumber(int, int);
+void displayConvertStringToBinary(string text);
 
 
+// test - ***********************************
 int main()
 {
-    
-    mainMenu();
 
+    mainMenu();
 
 	return 0;
 }
@@ -61,95 +63,122 @@ int mainMenu()
 
 //Pre-Conditon
 //Post-Condition
-int option1()
+void option1()
 {
+    // variable to hold the inputed string
     string textLine;
+
+    // variable to hold file name
     string textFile;
 
     do
     {
 
-    cout << "\n\t1 > ASCII Text To ASCII Numbers";
-    cout << "\n\t" << string(80, char(205)) << endl;
-    cout << "\n\t1 > Enter a text string";
-    cout << "\n\t2 > Convert the text string to ASCII numbers";
-    cout << "\n\t3 > Save the converted ASCII numbers into a binary file";
-    cout << "\n\t4 > Read the binary file";
-    cout << "\n\t" << string(80, char(169));
-    cout << "\n\t0 > return to Main Menu";
-    cout << "\n\t" << string(80, char(205)) << endl;
+        // 1. Sub Menu
+        cout << "\n\t1 > ASCII Text To ASCII Numbers";
+        cout << "\n\t" << string(80, char(205)) << endl;
+        cout << "\n\t1 > Enter a text string";
+        cout << "\n\t2 > Convert the text string to ASCII numbers";
+        cout << "\n\t3 > Save the converted ASCII numbers into a binary file";
+        cout << "\n\t4 > Read the binary file";
+        cout << "\n\t" << string(80, char(169));
+        cout << "\n\t0 > return to Main Menu";
+        cout << "\n\t" << string(80, char(205)) << endl;
 
-    int option = inputInteger("\n\tOption: ", 0, 4);
+        // get user input/option of sub menu 1. ASCII Text To ASCII Numbers
+        int option = inputInteger("\n\tOption: ", 0, 4);
 
         switch (option)
         {
+
+            // if user wants to return
         case 0: system("cls"); mainMenu(); break;
-        case 1: 
-        {
-            textLine = inputString("\n\tEnter a text line: ", true);
-        }break;
-            
-        case 2: 
+        case 1:
         {
 
-            cout << endl;
-            for (int i = 0; i < textLine.size(); i++)
-            {
-                cout << "\t" << static_cast<int>(textLine[i]) << " ";
-            }
-            cout << endl;
+            // ask user to inout a string 
+            textLine = inputString("\n\tEnter a text line: ", true);
+
+            // confirm to user that string was accepted 
+            cout << "\n\tString accepted." << endl;
+
         }break;
-        
-        case 3: 
+
+        case 2:
         {
-            textFile = inputString("\n\tEnter the name of the binary file: ", true);
+            // convert string to binary
+            displayConvertStringToBinary(textLine);
+
+            cout << endl;
+
+        }break;
+
+        case 3:
+        {
+
+            // store file name in textFile, that includes spaces
+            textFile = inputString("\n\tEnter the name of the binary file, to save your binary code: ", false);
+
+            // create ofstream named outputFile that writes to a binary file named textFile 
             ofstream outputFile(textFile, ios::binary);
 
-            if (!outputFile) {
+            // check if file exists
+            if (textFile.empty()) {
                 cout << "Error opening file for writing!" << endl;
-                return 1;
+                system("pause");
+                option1();
             }
 
-            // Writing data to the binary file
-            outputFile.write(textLine.c_str(), textLine.size());
-
-            outputFile.close();
-
-            cout << "\n\tData has been written to " << textFile << endl;
-        }break;
-        
-        case 4: 
-        {
-            ifstream inputFile(textFile, ios::binary);
-
-            if (!inputFile) {
-                cout << "Error opening file for reading!" << endl;
-                return 1;
-            }
-
-            // Seek to the end of the file to get the file size
-            inputFile.seekg(0, ios::end);
-            streampos fileSize = inputFile.tellg();
-            inputFile.seekg(0, ios::beg);
-
-            // Read the entire file content into a buffer
-            string fileContent(fileSize, ' ');
-            inputFile.read(&fileContent[0], fileSize);
-
-            inputFile.close();
-
-            cout << "\n\tData read from " << textFile << endl << endl;
+            // Writing data to the binary file   
             for (int i = 0; i < textLine.size(); i++)
             {
-                cout << "\t" << static_cast<int>(fileContent[i]) << " ";
+                outputFile << int(textLine[i]) << " ";
             }
-            
+
+            // close file
+            outputFile.close();
+
+            // display data that was saved
+            displayConvertStringToBinary(textLine);
+
+            // confirm data was written to the file
+            cout << "\n\n\tData has been written to " << textFile << endl;
+
+        }break;
+
+        case 4:
+        {
+
+            // creating an input file stream named inputFile and opening a file named textFile in binary mode
+            ifstream inputFile(textFile, ios::binary);
+
+            // open binary file
+            inputFile.open(textFile, ios::binary);
+
+            // check for file not opening
+            if (!inputFile.is_open()) {
+                cout << "Error opening file for reading!" << endl;
+                system("pause");
+                system("cls");
+                option1();
+            }
+
+            // confirm which file was opened
+            cout << "\n\n\tData read from " << textFile << endl << endl;
+
+            // display each letter in the string in binary
+            displayConvertStringToBinary(textLine);
+
+            // close file
+            inputFile.close();
+
+
         }break;
 
         default: cout << "\t\tERROR - Invalid option. Please re-enter."; break;
         }
         cout << "\n";
-        
+
     } while (true);
 
 }
@@ -264,6 +293,21 @@ void option3()
 {
 
 
+}
+
+// Pre-Condition: 
+// Post-Condition: 
+void displayConvertStringToBinary(string text)
+{
+
+    // display title
+    cout << "\n\tASCII: " << endl;
+
+    // loop through string and convert each letter into binary
+    for (int i = 0; i < text.size(); i++)
+    {
+        cout << "\t" << static_cast<int>(text[i]) << " ";
+    }
 }
 
 string convertDecimalNumber(int decimalNum, int _base)
