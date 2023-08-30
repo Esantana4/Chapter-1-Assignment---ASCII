@@ -5,20 +5,16 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include <vector>
 #include "input.h"
-
 using namespace std;
 
 int mainMenu();
 void option1();
 void option2();
 void option3();
-string convertDecimalNumber(int, int);
+// string convertDecimalNumber(int, int);
 void displayConvertStringToBinary(string text);
 
-
-// test - ***********************************
 int main()
 {
 
@@ -187,6 +183,8 @@ void option1()
 //Post-Condition
 void option2()
 {
+
+    /*
     int decimalNumber = 0;
     int base = 0;
 
@@ -284,6 +282,7 @@ void option2()
 
 
     } while (true);
+    */
 
 }
 
@@ -310,6 +309,7 @@ void displayConvertStringToBinary(string text)
     }
 }
 
+/*
 string convertDecimalNumber(int decimalNum, int _base)
 {
     //int base = 0;
@@ -340,3 +340,4 @@ string convertDecimalNumber(int decimalNum, int _base)
         //    cout << "\N";
  
 }
+*/
