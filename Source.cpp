@@ -145,11 +145,11 @@ void option1()
         case 4:
         {
 
+            // open binary file
             // creating an input file stream named inputFile and opening a file named textFile in binary mode
             ifstream inputFile(textFile, ios::binary);
 
-            // open binary file
-            inputFile.open(textFile, ios::binary);
+            //inputFile.open(textFile, ios::binary);
 
             // check for file not opening
             if (!inputFile.is_open()) {
