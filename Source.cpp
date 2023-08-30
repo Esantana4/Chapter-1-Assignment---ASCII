@@ -23,8 +23,8 @@ int main()
 	return 0;
 }
 
-// Pre - Conditon
-//Post-Condition
+// Pre-Conditon: no parameters
+// Post-Condition: no return. main menu
 void mainMenu()
 {
 
@@ -57,8 +57,8 @@ void mainMenu()
 
 }
 
-//Pre-Conditon
-//Post-Condition
+//Pre-Conditon: no parameters
+//Post-Condition: no return. sub menu from mainMenu()
 void option1()
 {
     // variable to hold the inputed string
@@ -294,8 +294,8 @@ void option3()
 
 }
 
-// Pre-Condition: 
-// Post-Condition: 
+// Pre-Condition: text is the string to be converted to Binary
+// Post-Condition: no return value
 void displayConvertStringToBinary(string text)
 {
 
