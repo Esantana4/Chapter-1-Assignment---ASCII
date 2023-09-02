@@ -130,6 +130,9 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ASCIITextToASCIINumbers.h" />
+    <ClInclude Include="BaseConverter.h" />
+    <ClInclude Include="DescriptiveStatistics.h" />
     <ClInclude Include="input.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
