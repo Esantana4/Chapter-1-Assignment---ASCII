@@ -29,39 +29,7 @@ void displayDescriptiveStatisticsMenu()
 	cout << "************************************************************" << endl;
 	cout << "X. Return" << endl;
 	cout << "************************************************************" << endl;
-
-	//// get user input/option of main menu
-	//char option = toupper(inputChar("\n\tOption: ", "abcdefghijklmnopqrstuvwx"));
-
-	//// loop through main menu until user exits
-	//do
-	//{
-	//	switch (option)
-	//	{
-	//	case 'X': mainMenu(); break;
-	//	case 'A': readIntsFromFile(); break;
-	//	case 0: findMinimum(); break;
-	//	case 0: findMaximum(); break;
-	//	case 0: findRange(); break;
-	//	case 0: exit(1); break;
-	//	case 0: exit(1); break;
-	//	case 0: exit(1); break;
-	//	case 0: exit(1); break;
-	//	case 0: exit(1); break;
-	//	case 0: exit(1); break;
-	//	case 0: exit(1); break;
-	//	case 0: exit(1); break;
-	//	case 0: exit(1); break;
-	//	case 0: exit(1); break;
-	//	case 0: exit(1); break;
-	//	case 0: exit(1); break;
-	//	case 0: exit(1); break;
-	//	case 0: exit(1); break;
-	//	case 0: exit(1); break;
-	//	case 0: exit(1); break;
-	//	case 0: exit(1); break;
-	//	case 0: exit(1); break;
-
+	cout << "Option: ";
 
 
 }
@@ -903,8 +871,7 @@ int descriptiveStatistics() {
 			}
 
 			outputFile.close();
-			//system("pause");
-			//system("cls");
+
 		}
 		break;
 
