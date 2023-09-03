@@ -4,6 +4,26 @@
 // Saul Merino & John Kim - Base Converter
 
 
+/*
+*
+Hello this is a base convertion calculator written in C++ This was written by Saul Merino and John Kim. Special thanks to Erik Santana for QA checks.
+
+There are three options that will be given once it is called. The user is prompted to selected their option, or exit out of this calcualtor.
+
+The user will be given a choice on what options to pick. in the first option, the user is prompted.
+to enter an integer value, either positive or negative, in the decimal system. This will be stored for later use.
+
+Note that if the user does not input an integer for calculation, then the program will prompt the user to enter one before continuing.
+
+In the second option, the user is prompted to input a base from from binary [2], to all the way to hexatrigesimal [36]
+then it will display the converted number to the appropriate base with characters and negative numbers, if needed.
+
+In the third option, the program will automaticly calculate and display all possible  base conversions
+from binary [2], to all the way to hexatrigesimal [36] in one list with the integer the user inputed.
+
+*/
+
+
 #include <iomanip>
 #include <cmath> //absolute value 
 #include <cctype> //for the toupper validation

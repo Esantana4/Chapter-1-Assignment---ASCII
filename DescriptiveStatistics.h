@@ -11,6 +11,8 @@
 #include <algorithm>
 #include <sstream>
 
+// PRECONDITION: none
+// POSTCONDITION: the menu options for descriptive statistics are displayed on the standard output.
 void displayDescriptiveStatisticsMenu()
 {
 	cout << "3> Descriptive Statistics" << endl;
@@ -34,6 +36,8 @@ void displayDescriptiveStatisticsMenu()
 
 }
 
+// PRECONDITION: 'array' should be a dynamically allocated array of integers, 'size' should represent the number of elements in 'array'.
+// POSTCONDITION: 'array' will be displayed on the standard output.
 void displayArray(int* array, int size) {
 	cout << "Data set with " << size << " data: \n";
 	cout << "{ ";
@@ -44,6 +48,8 @@ void displayArray(int* array, int size) {
 	cout << array[size - 1] << " }\n";
 }
 
+// PRECONDITION: the 'array' should be a dynamically allocated array sorted in ascending order, 'size' should represent the number of elements in 'array'.
+// POSTCONDITION: 'array' will be resized, and 'element' will be inserted in a way that keeps the array sorted, 'size' will be incremented by 1 to reflect the new size of the array.
 void insertSorted(int*& arr, int& n, int num) {
 	int* newArr = new int[n + 1];
 
@@ -64,6 +70,8 @@ void insertSorted(int*& arr, int& n, int num) {
 	++n;
 }
 
+// PRECONDITION: 'filename' should be a valid file name, 'arrayInts' should be a pointer to an array of integers, 'count' should be an integer representing the number of elements in 'arrayInts'.
+// POSTCONDITION: 'arrayInts' will be resized to hold the integers read from the file, 'count' will be updated to reflect the new size of 'arrayInts'.
 void readIntsFromFile(const string& filename, int*& arrayInts, int& count) {
 	ifstream file(filename);
 
@@ -83,6 +91,8 @@ void readIntsFromFile(const string& filename, int*& arrayInts, int& count) {
 	file.close();
 }
 
+// PRECONDITION: arrayInts is a non-null pointer, count > 0
+// POSTCONDITION: finds the minimum value in 'arrayInts' and returns it, throws an error if 'arrayInts' is empty.
 int findMinimum(int* arrayInts, int count) {
 	if (count == 0) {
 		throw runtime_error("The array is empty, cannot find minimum.");
@@ -98,6 +108,8 @@ int findMinimum(int* arrayInts, int count) {
 	return minVal;
 }
 
+// PRECONDITION: arrayInts is a non-null pointer, count > 0
+// POSTCONDITION: finds the maximum value in 'arrayInts' and returns it, throws an error if 'arrayInts' is empty.
 int findMaximum(int* arrayInts, int count) {
 	if (count == 0) {
 		throw runtime_error("The array is empty, cannot find maximum.");
@@ -113,6 +125,8 @@ int findMaximum(int* arrayInts, int count) {
 	return maxVal;
 }
 
+// PRECONDITION: arrayInts is a non-null pointer, count > 0
+// POSTCONDITION: calculates the average of the values in 'arrayInts' and returns it as a double, throws an error if 'arrayInts' is empty.
 double calculateAverage(int* arrayInts, int count) {
 	if (count == 0) {
 		throw runtime_error("The array is empty, cannot calculate average.");
@@ -126,6 +140,8 @@ double calculateAverage(int* arrayInts, int count) {
 	return static_cast<double>(sum) / count;
 }
 
+// PRECONDITION: arrayInts is a non-null pointer, count > 0, and count should be at least 2.
+// POSTCONDITION: calculates the sample standard deviation of the values in 'arrayInts' and returns it as a double, throws an error if 'arrayInts' contains fewer than two elements.
 double calculateStandardDeviation(int* arrayInts, int count) {
 	if (count == 0) {
 		throw runtime_error("The array is empty, cannot calculate standard deviation.");
@@ -141,6 +157,8 @@ double calculateStandardDeviation(int* arrayInts, int count) {
 	return sqrt(sumOfSquares / (count - 1));
 }
 
+// PRECONDITION: arrayInts is a non-null pointer, count > 0
+// POSTCONDITION: calculates the sum of the values in 'arrayInts' and returns it as an integer, throws an error if 'arrayInts' is empty.
 int findSum(int* arrayInts, int count) {
 	if (count == 0) {
 		throw runtime_error("The array is empty, cannot find sum.");
@@ -154,6 +172,8 @@ int findSum(int* arrayInts, int count) {
 	return sum;
 }
 
+// PRECONDITION: arrayInts is a non-null pointer, count > 0
+// POSTCONDITION: calculates the mean (average) of the values in 'arrayInts' and returns it as a double, throws an error if 'arrayInts' is empty.
 double findMean(int* arrayInts, int count) {
 	if (count == 0) {
 		throw runtime_error("The array is empty, cannot find mean.");
@@ -162,6 +182,8 @@ double findMean(int* arrayInts, int count) {
 	return calculateAverage(arrayInts, count);  // average and mean are the same
 }
 
+// PRECONDITION: arrayInts is a non-null pointer, count > 0
+// POSTCONDITION: sorts the array 'arrayInts' and calculates the median, returning it as a double, throws an error if 'arrayInts' is empty.
 double findMedian(int* arrayInts, int count) {
 	if (count == 0) {
 		throw runtime_error("The array is empty, cannot find median.");
@@ -177,6 +199,8 @@ double findMedian(int* arrayInts, int count) {
 	}
 }
 
+// PRECONDITION: arrayInts is a non-null pointer, count > 0
+// POSTCONDITION: finds the range of the integers in 'arrayInts' and returns it, throws an error if 'arrayInts' is empty.
 int findRange(int* arrayInts, int count) {
 	if (count == 0) {
 		throw runtime_error("The array is empty, cannot find range.");
@@ -193,6 +217,8 @@ int findRange(int* arrayInts, int count) {
 	return maxVal - minVal;
 }
 
+// PRECONDITION: arrayInts is a non-null pointer, count > 0, the array should also be sorted for frequency counts to be accurate.
+// POSTCONDITION: calculates the frequencies and percentages of each unique integer, in 'arrayInts' and displays them, throws an error if 'arrayInts' is empty, returns nothing.
 void findFrequencies(int* arrayInts, int count) {
 	if (count == 0) {
 		throw runtime_error("The array is empty, cannot find freqencies.");
@@ -214,6 +240,9 @@ void findFrequencies(int* arrayInts, int count) {
 	}
 }
 
+// PRECONDITION:  arrayInts is a non-null pointer, count > 0, 'arrayInts' should be sorted in ascending order for accurate mode calculation.
+// POSTCONDITION: finds the mode (most frequent element) in 'arrayInts' and prints it along with its frequency. If no mode is found (i.e., all numbers appear only once),
+// a message is printed indicating that no mode exists, throws an error if 'arrayInts' is empty.
 void findMode(int* arrayInts, int count) {
 	if (count == 0) {
 		throw runtime_error("The array is empty, cannot find mode.");
@@ -244,6 +273,8 @@ void findMode(int* arrayInts, int count) {
 	}
 }
 
+// PRECONDITION:  arrayInts is a non-null pointer, count > 0, 'count' should be greater than or equal to 2 for a valid variance calculation.
+// POSTCONDITION: calculates the sample variance of the integers in 'arrayInts' and returns it, hrows an error if 'arrayInts' has fewer than two elements.
 double findVariance(int* arrayInts, int count) {
 	if (count == 0) {
 		throw runtime_error("The array is empty, cannot find variance.");
@@ -269,6 +300,8 @@ double findVariance(int* arrayInts, int count) {
 	return variance;
 }
 
+// PRECONDITION:  arrayInts is a non-null pointer, count > 0
+// POSTCONDITION: calculates the midrange of the integers in 'arrayInts' and returns it, throws an error if 'arrayInts' is empty.
 double findMidrange(int* arrayInts, int count) {
 	if (count == 0) {
 		throw runtime_error("The array is empty, cannot find midrange.");
@@ -289,6 +322,8 @@ double findMidrange(int* arrayInts, int count) {
 	return static_cast<double>(minVal + maxVal) / 2;
 }
 
+// PRECONDITION: assumes findMedian is defined above this code, arrayInts is a non-null pointer, count > 0,
+// POSTCONDITION: calcualtes and prints the first, second (median), and third quartiles of the integers in 'arrayInts', throws an error if 'arrayInts' is empty.
 void findQuartiles(int* arrayInts, int count) {
 	if (count == 0) {
 		throw std::runtime_error("The array is empty, cannot find quartiles.");
@@ -335,6 +370,9 @@ void findQuartiles(int* arrayInts, int count) {
 	delete[] upperHalf;
 }
 
+// PRECONDITION: assumes findMedian is defined above this code.
+// arrayInts is a non-null pointer, count > 0, 'count' should be greater or equal to 4 for valid interquartile range calculations.
+// POSTCONDITION: calculates and returns the interquartile range of the integers in 'arrayInts', throws an error if 'arrayInts' has fewer than 4 elements.
 double findInterquartileRange(int* arrayInts, int count) {
 	if (count < 4) {
 		throw std::runtime_error("The dataset is too small to calculate the interquartile range.");
@@ -371,6 +409,8 @@ double findInterquartileRange(int* arrayInts, int count) {
 	return q3 - q1;
 }
 
+// PRECONDITION: assumes findInterquartileRange and findMedian are defined above this code, arrayInts is a non-null pointer, count > 0, 'count' should be greater or equal to 4 for valid outlier identification.
+// POSTCONDITION: calculates and outputs any outliers found in the dataset to the console, throws an error if 'arrayInts' has fewer than 4 elements.
 void findOutliers(int* arrayInts, int count) {
 
 	double iqr = findInterquartileRange(arrayInts, count);
@@ -419,6 +459,8 @@ void findOutliers(int* arrayInts, int count) {
 	cout << endl;
 }
 
+// PRECONDITION: arrayInts is a non-null pointer, count > 0
+// POSTCONDITION: calculates and returns the sum of squares of deviations from the mean
 double findSumOfSquares(int* arrayInts, int count) {
 	if (count == 0) {
 		throw std::runtime_error("The array is empty, cannot find sum of squares.");
@@ -435,6 +477,8 @@ double findSumOfSquares(int* arrayInts, int count) {
 	return sumOfSquares;
 }
 
+// PRECONDITION: arrayInts is a non-null pointer, count > 0
+// POSTCONDITION: calculates and returns the sum of absolute deviations from the mean
 double findSumAbsoluteDeviation(int* arrayInts, int count, double mean) {
 	if (count == 0) {
 		throw std::runtime_error("The array is empty, cannot calculate sum of absolute deviations.");
@@ -448,6 +492,8 @@ double findSumAbsoluteDeviation(int* arrayInts, int count, double mean) {
 	return sumAbsoluteDeviation;
 }
 
+// PRECONDITION: arrayInts is a non-null pointer, count > 0
+// POSTCONDITION: calculates and returns the mean absolute deviation of the array
 double findMeanAbsoluteDeviation(int* arrayInts, int count) {
 	if (count == 0) {
 		throw std::runtime_error("The array is empty, cannot calculate mean absolute deviation.");
@@ -460,6 +506,8 @@ double findMeanAbsoluteDeviation(int* arrayInts, int count) {
 	return mad;
 }
 
+// PRECONDITION: arrayInts is a non-null pointer, count > 0
+// POSTCONDITION: calculates and returns the root mean square (RMS) of the array
 double findRootMeanSquare(int* arrayInts, int count) {
 	if (count == 0) {
 		throw std::runtime_error("The array is empty, cannot calculate root mean square.");
@@ -474,6 +522,8 @@ double findRootMeanSquare(int* arrayInts, int count) {
 	return rms;
 }
 
+// PRECONDITION: arrayInts is a non-null pointer, count > 0, standardDeviation >= 0
+// POSTCONDITION: calculates and returns the standard error of the array based on the provided standard deviation
 double findStandardError(int* arrayInts, int count, double standardDeviation) {
 	if (count == 0) {
 		throw std::runtime_error("The array is empty, cannot calculate standard error.");
@@ -483,6 +533,8 @@ double findStandardError(int* arrayInts, int count, double standardDeviation) {
 	return standardError;
 }
 
+// PRECONDITION: arrayInts is a non-null pointer, count > 0, standardDeviation >= 0, mean != 0
+// POSTCONDITION: calculates and returns the coefficient of variation for the array based on the provided standard deviation and mean
 double findCoefficientOfVariation(int* arrayInts, int count, double standardDeviation, double mean) {
 	if (count == 0) {
 		throw std::runtime_error("The array is empty, cannot calculate coefficient of variation.");
@@ -495,6 +547,8 @@ double findCoefficientOfVariation(int* arrayInts, int count, double standardDevi
 	return coefficientOfVariation;
 }
 
+// PRECONDITION: arrayInts is a non-null pointer, count > 0, standardDeviation >= 0, mean != 0
+// POSTCONDITION: calculates and returns the relative standard deviation for the array based on the provided standard deviation and mean
 double findRelativeStandardDeviation(int* arrayInts, int count, double standardDeviation, double mean) {
 	if (count == 0) {
 		throw std::runtime_error("The array is empty, cannot calculate relative standard deviation.");
@@ -507,6 +561,9 @@ double findRelativeStandardDeviation(int* arrayInts, int count, double standardD
 	return relativeStandardDeviation;
 }
 
+// PRECONDITION: function expects that any function it calls is properly defined and assumes that any data file it tries to read from is properly formatted.
+// POSTCONDITION: the function will perform multiple descriptive statistical operations based on the user's choice, the function will display the results on the screen and may write them to an output file.
+// any dynamic memory allocated will be managed properly.
 int descriptiveStatistics() {
 	int* arrayInts = nullptr;
 	int count = 0;
