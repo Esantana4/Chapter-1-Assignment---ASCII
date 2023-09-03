@@ -7,6 +7,11 @@ Description:
  and 3, a description of statistics of binary files with numerical data inside of them.
  */
 
+// Credit: 
+// Joe Bryant & Erik Santana - ASCII Text To ASCII Numbers 
+// Saul Merino & John Kim - Base Converter
+// Otoniel torres bernal & Oscar Gallardo - Descriptive Statistics 
+
 #include "input.h" // must be on top of the 3 main header files
 #include <iostream> // must be on top of the 3 main header files
 #include <string> // must be on top of the 3 main header files

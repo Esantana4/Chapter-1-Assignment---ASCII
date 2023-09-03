@@ -1,8 +1,7 @@
 #pragma once
 
-// Erik Santana
-// 8/22/23
-// CPMR 131 - Professor Q
+// Credit:
+// Joe Bryant & Erik Santana - ASCII Text To ASCII Numbers 
 
 
 // The mainMenu() function is to return back to the main menu from a sub menu. It is a necessary step. You need to add your own mainMenu to use this code.

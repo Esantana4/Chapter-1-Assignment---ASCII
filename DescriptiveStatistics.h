@@ -1,5 +1,9 @@
 #pragma once
 
+// Credit:
+// Otoniel Torres Bernal & Oscar Gallardo - Descriptive Statistics 
+
+
 #include <iomanip>
 #include <stdexcept>
 #include <limits>

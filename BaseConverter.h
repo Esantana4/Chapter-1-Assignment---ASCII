@@ -1,5 +1,9 @@
 #pragma once
 
+// Credit: 
+// Saul Merino & John Kim - Base Converter
+
+
 #include <iomanip>
 #include <cmath> //absolute value 
 #include <cctype> //for the toupper validation
