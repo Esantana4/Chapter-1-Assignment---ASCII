@@ -1,0 +1,4 @@
+Minimum Value: 12
+Maximum Value: 98
+Range: 86
+Size: 4

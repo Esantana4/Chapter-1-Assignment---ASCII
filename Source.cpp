@@ -15,7 +15,6 @@ Description:
 #include "BaseConverter.h"
 #include "DescriptiveStatistics.h"
 
-
 using namespace std;
 
 void mainMenu();

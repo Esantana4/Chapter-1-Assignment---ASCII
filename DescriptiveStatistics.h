@@ -2,7 +2,6 @@
 
 #include <string>
 #include <iomanip>
-#include "descriptiveStatistics.h"
 #include <iomanip>
 #include <stdexcept>
 #include <limits>
