@@ -913,108 +913,177 @@ int descriptiveStatistics() {
 
 		case 'W': // display all results and write to an output text file
 		{
+			system("cls");
+			string outputFile; // Variable to store the output file name
+			cout << "Enter output file name: "; // Prompt user for output file name
+			cin >> outputFile; // Read the file name from user
 
-			std::ofstream outputFile("DescriptiveStatisticsResults.txt");
-			if (!outputFile) {
-				cerr << "Error opening output file." << endl;
+			ofstream outFile(outputFile); // Open the output file with the given name
+			if (!outFile) {
+				std::cerr << "Error opening output file." << std::endl;
 				break;
 			}
 			try {
 				// writing to file (and this will overwrite the file if it already exists)
 
+				// Temporarily replace cout's buffer with the stringstream's buffer
+
+				displayArray(arrayInts, count);
+
+				stringstream ss;
+				streambuf* coutbuf = cout.rdbuf();
+				cout.rdbuf(ss.rdbuf());
+
 				displayArray(arrayInts, count); // A
 
+				// Restore cout's original buffer
+				cout.rdbuf(coutbuf);
+
+				// Write the captured output to the file
+				outFile << ss.str();
+				cout << "\n" << endl;
+
 				int minVal = findMinimum(arrayInts, count); // B
-				outputFile << "Minimum Value: " << minVal << endl;
-				cout << "Minimum Value: " << minVal << endl << endl;
+				outFile << "Minimum Value: " << minVal << endl;
+				cout << "Minimum Value: " << minVal << "" << endl;
+				cout << "\n" << endl;
 
 				int maxVal = findMaximum(arrayInts, count); // C
-				outputFile << "Maximum Value: " << maxVal << endl;
-				cout << "Maximum Value: " << maxVal << endl << endl;
+				outFile << "Maximum Value: " << maxVal << endl;
+				cout << "Maximum Value: " << maxVal << endl;
+				cout << "\n" << endl;
 
 				int range = findRange(arrayInts, count); // D
-				outputFile << "Range: " << range << endl;
-				cout << "Range: " << range << endl << endl;
+				outFile << "Range: " << range << endl;
+				cout << "Range: " << range << endl;
+				cout << "\n" << endl;
 
-				outputFile << "Size: " << count << endl; // E 
-				cout << "Size: " << count << endl << endl;
+				outFile << "Size: " << count << endl; // E 
+				cout << "Size: " << count << endl;
+				cout << "\n" << endl;
 
 				int sum = findSum(arrayInts, count); // F 
-				outputFile << "Sum: " << sum << endl;
-				cout << "Sum: " << sum << endl << endl;
+				outFile << "Sum: " << sum << endl;
+				cout << "Sum: " << sum << endl;
+				cout << "\n" << endl;
 
 				double mean = findMean(arrayInts, count); // G 
-				outputFile << "Mean: " << mean << endl;
-				cout << "Mean: " << mean << endl << endl;
+				outFile << "Mean: " << mean << endl;
+				cout << "Mean: " << mean << endl;
+				cout << "\n" << endl;
 
 				double median = findMedian(arrayInts, count); // H
-				outputFile << "Median: " << median << endl;
-				cout << "Median: " << median << endl << endl;
+				outFile << "Median: " << median << endl;
+				cout << "Median: " << median << endl;
+				cout << "\n" << endl;
 
-				findMode(arrayInts, count);	 // J
-				cout << endl;
+				findMode(arrayInts, count);
+
+				// Clear stringstream
+				ss.str(string());
+
+				// Capture output of findMode
+				cout.rdbuf(ss.rdbuf());
+				findMode(arrayInts, count); // J
+				cout.rdbuf(coutbuf);
+				outFile << "Mode: " << ss.str() << endl;
+				cout << "\n" << endl;
 
 				double stdDev = calculateStandardDeviation(arrayInts, count); // K
-				outputFile << "Standard Deviation: " << stdDev << endl;
-				cout << "Standard Deviation: " << stdDev << endl << endl;
+				outFile << "Standard Deviation: " << stdDev << endl;
+				cout << "Standard Deviation: " << stdDev << endl;
+				cout << "\n" << endl;
 
 				double variance = findVariance(arrayInts, count); // L
-				outputFile << "Variance: " << variance << endl;
-				cout << "Variance: " << variance << endl << endl;
+				outFile << "Variance: " << variance << endl;
+				cout << "Variance: " << variance << endl;
+				cout << "\n" << endl;
 
 				double midrangeVal = findMidrange(arrayInts, count); // M
-				outputFile << "Midrange: " << midrangeVal << endl;
-				cout << "Midrange: " << midrangeVal << endl << endl;
+				outFile << "Midrange: " << midrangeVal << endl;
+				cout << "Midrange: " << midrangeVal << endl;
+				cout << "\n" << endl;
 
-				findQuartiles(arrayInts, count); // N 
+				findQuartiles(arrayInts, count);
 
-				cout << endl;
+				// Clear stringstream
+				ss.str(string());
+
+				// Capture output of findQuartiles
+				cout.rdbuf(ss.rdbuf());
+				findQuartiles(arrayInts, count); // N
+				cout.rdbuf(coutbuf);
+				outFile << "Quartiles: " << ss.str() << endl;
+				cout << "\n" << endl;
 
 				double iqr = findInterquartileRange(arrayInts, count); // O
-				outputFile << "Interquartile Range (IQR): " << iqr << endl;
-				cout << "Interquartile Range (IQR): " << iqr << endl << endl;
+				outFile << "Interquartile Range (IQR): " << iqr << endl;
+				cout << "Interquartile Range (IQR): " << iqr << endl;
+				cout << "\n" << endl;
 
+				findOutliers(arrayInts, count);
+
+				// Clear stringstream
+				ss.str(string());
+
+				// Capture output of findOutliers
+				cout.rdbuf(ss.rdbuf());
 				findOutliers(arrayInts, count); // P
-
-				cout << endl;
+				cout.rdbuf(coutbuf);
+				outFile << "Outliers: " << ss.str() << endl;
+				cout << "\n" << endl;
 
 				double sumOfSquaresVal = findSumOfSquares(arrayInts, count); // Q
-				outputFile << "Sum of Squares: " << sumOfSquaresVal << endl;
-				cout << "Sum of Squares: " << sumOfSquaresVal << endl << endl;
+				outFile << "Sum of Squares: " << sumOfSquaresVal << endl;
+				cout << "Sum of Squares: " << sumOfSquaresVal << endl;
+				cout << "\n" << endl;
 
 				double mad = findMeanAbsoluteDeviation(arrayInts, count); // R
-				outputFile << "Mean Absolute Deviation (MAD): " << mad << endl;
-				cout << "Mean Absolute Deviation (MAD): " << mad << endl << endl;
+				outFile << "Mean Absolute Deviation (MAD): " << mad << endl;
+				cout << "Mean Absolute Deviation (MAD): " << mad << endl;
+				cout << "\n" << endl;
 
 				double rms = findRootMeanSquare(arrayInts, count); // S
-				outputFile << "Root Mean Square (RMS): " << rms << endl;
-				cout << "Root Mean Square (RMS): " << rms << endl << endl;
+				outFile << "Root Mean Square (RMS): " << rms << endl;
+				cout << "Root Mean Square (RMS): " << rms << endl;
+				cout << "\n" << endl;
 
 				double standardError = findStandardError(arrayInts, count, stdDev); // T
-				outputFile << "Standard Error of the Mean: " << standardError << endl;
-				cout << "Standard Error of the Mean: " << standardError << endl << endl;
+				outFile << "Standard Error of the Mean: " << standardError << endl;
+				cout << "Standard Error of the Mean: " << standardError << endl;
+				cout << "\n" << endl;
 
 				double coefficientOfVariation = findCoefficientOfVariation(arrayInts, count, stdDev, mean); // U
-				outputFile << "Coefficient of Variation: " << coefficientOfVariation << "%" << endl;
-				cout << "Coefficient of Variation: " << coefficientOfVariation << "%" << endl << endl;
+				outFile << "Coefficient of Variation: " << coefficientOfVariation << endl;
+				cout << "Coefficient of Variation: " << coefficientOfVariation << endl;
+				cout << "\n" << endl;
 
 				double relativeStandardDeviation = findRelativeStandardDeviation(arrayInts, count, stdDev, mean); // V
-				outputFile << "Relative Standard Deviation: " << relativeStandardDeviation << "%" << endl;
-				cout << "Relative Standard Deviation: " << relativeStandardDeviation << "%" << endl << endl;
+				outFile << "Relative Standard Deviation: " << relativeStandardDeviation << "%" << endl;
+				cout << "Relative Standard Deviation: " << relativeStandardDeviation << "%" << endl;
+				cout << "\n" << endl;
 
-				findFrequencies(arrayInts, count); // I (moved to last to make output look nicer for user)
+				findFrequencies(arrayInts, count);
 
-				cout << endl;
+				// clear 
+				ss.str(std::string());
 
-				cout << "All results have been written to 'DescriptiveStatisticsResults.txt'." << endl << endl;;
+				// Capture output of findFrequencies
+				std::cout.rdbuf(ss.rdbuf());
+				findFrequencies(arrayInts, count); // I
+				std::cout.rdbuf(coutbuf);
+				outFile << "Frequencies: " << ss.str() << endl;
+				cout << "\n" << endl;
+
 			}
 			catch (const runtime_error& e) {
 				cerr << e.what() << endl;
-				outputFile << "Error: " << e.what() << endl;
+				outFile << "Error: " << e.what() << endl;
 			}
 
-			outputFile.close();
-
+			outFile.close();
+			system("pause");
+			system("cls");
 		}
 		break;
 
