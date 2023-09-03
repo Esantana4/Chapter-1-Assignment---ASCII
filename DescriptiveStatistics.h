@@ -28,7 +28,6 @@ void displayDescriptiveStatisticsMenu()
 	cout << "************************************************************" << endl;
 	cout << "Option: ";
 
-
 }
 
 void insertSorted(int*& arr, int& n, int num) {

@@ -19,7 +19,6 @@ using namespace std;
 
 void mainMenu();
 
-//this is temp until merged to Project
 int main()
 {
 
