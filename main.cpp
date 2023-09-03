@@ -17,6 +17,7 @@ Description:
 
 using namespace std;
 
+// main menu
 void mainMenu();
 
 int main()

@@ -10,11 +10,9 @@ int newIntInput(); // Option 1 in UI
 void baseConversionSingle(int num1); //Option 2 in UI
 void baseConversionAll(int num1); // Option 3 in UI
 
-//BUG: Input a string of chars before a interger
-
 //This is the Main menu for Part 2. It will return back to the Assignment 1 once it is done.
 // Precondition: None
-// Postcondition: returns nothing
+// Postcondition: returns the called function, depending on what case input was selected.
 void baseConverterMenu()
 {
 	int num1;
@@ -36,7 +34,7 @@ void baseConverterMenu()
 
 //This is the intro text for the Main Menu for Part 2
 // Precondition: None
-// Postcondition: Returns ToUpper Char for menu 
+// Postcondition: Returns a (char), or an uppercase of the option (char)
 int baseConverterMenuOption()
 {
 	system("cls");
@@ -55,37 +53,38 @@ int baseConverterMenuOption()
 	return option;
 }
 
-//This is where get the Number for the calculations
-// Precondition: User picks Option "1"
-// Postcondition: Returns an Integer Positive for calculations on option 2 and 3
+//This is where the user can choose what base to calculate their number. It is limited in range from binary [2] all the way to hexatrigesimal [36]
+// Precondition: Valid Integer
+// Postcondition: Returns the Integer and its converted Base
 int newIntInput()
 {
 	return inputInteger("Enter An Integer in Base 10: ");
 }
 
 //This is where the user can choose what base to calculate their number. It is limited in range from binary [2] all the way to hexatrigesimal [36]
-// Precondition: User picks Option "2" , and 
+// Precondition: Valid Integer
 // Postcondition: Returns the Integer and its converted Base
 void baseConversionSingle(int num1)
 {
 
-	int base = inputInteger("Enter the base to convert your number to (2..36): ", 2, 36);
+	int base = inputInteger("Enter the base to convert your number to (2..36): ", 2, 36);	//this is the intro and asks for what base to calculate in
 	string binaryNumber = "";
-	char hex;
+	char hex;					//this is to hold an integer-turned to char for string input.
 	int tempNum = num1;
+
 	do
 	{
 		int remainder = abs(num1) % base;
 
 		num1 /= base;
 
-		if (remainder > 9)
+		if (remainder > 9)																	//this is where numeric values that exteed our decimal system get translated to the appropiate base.
 		{
-			hex = remainder + 55;
-			string hexNum(1, hex);
-			binaryNumber.insert(0, hexNum);
+			hex = remainder + 55;															//the 'exteeded' value is converted to the ascii binary code. For example 
+			string hexNum(1, hex);															// the array is advanced
+			binaryNumber.insert(0, hexNum);													// the now converted value is then added to the string
 		}
-		else
+		else //if the numeric value was between 0-9, it directly puts it in.
 		{
 			binaryNumber.insert(0, to_string(remainder));
 		}
@@ -96,27 +95,30 @@ void baseConversionSingle(int num1)
 		hex = abs(num1) + 55;
 		string hexNum(1, hex);
 		binaryNumber.insert(0, hexNum);
-		if (tempNum < 0)
+		if (tempNum < 0)//if the integer inputed was negative, then the negative sign would be added at the end
 		{
 			binaryNumber.insert(0, "-");
 		}
 	}
-	else if (num1 != 0)
+	else if (num1 != 0) // this is if the number is too small and can fit in the base.
 	{
 		binaryNumber.insert(0, to_string(num1));
 	}
-
+	else if (tempNum < 0 && num1 == 0)//if the integer inputed was negative, then the negative sign would be added at the end
+	{
+		binaryNumber.insert(0, "-");
+	}
 
 	cout << tempNum << " (Base of 10) = " << binaryNumber << " (Base of " << base << ")" << endl;
 }
 
 //This is where the program calculates their number in all the bases. It lists out all the base conversion from binary [2], to all the way to hexatrigesimal [36] in one list.
-// Precondition: User pick Option "3"
+// Precondition: Integer (Positve or Negative)
 // Postcondition: Outputs the Integer and the list of all converted Bases
 void baseConversionAll(int num1)
 {
 
-	int tempNum = num1;
+	int tempNum = num1; //this is just to hold the  for a moment.
 	char hex;
 	cout << "Your number is " << num1 << "." << endl;
 	string binaryNumber = "";
@@ -151,6 +153,10 @@ void baseConversionAll(int num1)
 		else if (num1 != 0)
 		{
 			binaryNumber.insert(0, to_string(num1));
+		}
+		else if (tempNum < 0 && num1 == 0)//if the integer inputed was negative, then the negative sign would be added at the end
+		{
+			binaryNumber.insert(0, "-");
 		}
 
 		cout << binaryNumber << " (Base of " << base << ")" << endl;
